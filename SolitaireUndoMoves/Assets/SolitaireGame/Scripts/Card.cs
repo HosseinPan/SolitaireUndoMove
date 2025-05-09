@@ -18,9 +18,6 @@ public class Card : MonoBehaviour
     {
         cardData = data;
 
-        backCard.SetActive(true);
-        frontCard.SetActive(false);
-
         switch(data.Suit)
         {
             case CardSuit.Spades:
@@ -56,5 +53,17 @@ public class Card : MonoBehaviour
             Debug.LogError("Wrong Card Number!");
 
     }
-    
+
+    public void SetFront()
+    {
+        backCard.SetActive(false);
+        frontCard.SetActive(true);
+    }
+
+    public void SetBack()
+    {
+        backCard.SetActive(true);
+        frontCard.SetActive(false);
+    }
+
 }
