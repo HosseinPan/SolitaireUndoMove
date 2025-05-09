@@ -3,9 +3,10 @@ Sample project showcasing the undo move mechanic in a Solitaire game
 
 
 # What I Built
-I created a simplified Solitaire-style feature focusing on an Undo Move system in this Unity prototype. The project includes:
+I created a simplified Solitaire-style feature focusing on an Undo Move system. 
+The project includes:
 Card and Pile Structures: Card, Pile, and supporting enums and utilities to manage suits, numbers, and piles.
-I used the EventBus pattern to modularize different parts of the code.
+EventBus pattern to modularize different parts of the code.
 Drag-and-Drop Mechanics: A centralized DragDropManager handles mouse input, card dragging, and drop detection onto pile placeholders.
 Undo System: Implement the Command pattern (ICommand, MoveCommand) and a GameManager with a command stack to revert the last card move.
 
