@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ public class Card : MonoBehaviour
     [Space]
     [Header("Data")]
     [SerializeField] private CardData cardData;
+
+    [HideInInspector]
+    public Pile CurrentPile;
 
 
     public void Initialize(CardData data)

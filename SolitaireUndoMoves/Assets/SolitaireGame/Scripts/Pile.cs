@@ -15,6 +15,24 @@ public class Pile : MonoBehaviour
 
     private List<Card> cards = new List<Card>();
 
+    private void OnEnable()
+    {
+        EventBus.OnCardMoved += OnCardMoved;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.OnCardMoved -= OnCardMoved;
+    }
+
+    private void OnCardMoved(CardMovedEventData eventData)
+    {
+        if (eventData.targetPile != this)
+            return;
+
+        AddCards(new List<Card> { eventData.card });
+    }
+
     public void Initialize(List<Card> addingCards)
     {
         AddCards(addingCards);
@@ -25,9 +43,6 @@ public class Pile : MonoBehaviour
         {
             addingCards[addingCards.Count - 1].SetFront();
         }
-
-        foreach (var addingCard in addingCards)
-            addingCard.transform.localPosition = Vector3.zero;
     }
 
     public void AddCards(List<Card> addingCards)
@@ -36,6 +51,10 @@ public class Pile : MonoBehaviour
 
         foreach (var addingCard in addingCards)
         {
+            addingCard.CurrentPile = this;
+            addingCard.transform.parent = cardsParent;
+            addingCard.transform.localPosition = Vector3.zero;
+
             switch (PileName)
             {
                 case PileName.DrawPile:
@@ -61,7 +80,6 @@ public class Pile : MonoBehaviour
                     break;
             }
 
-            addingCard.transform.parent = cardsParent;
         }
 
         ReSortOrderCards();
@@ -82,7 +100,7 @@ public class Pile : MonoBehaviour
         int sortOrder = 0;
         for (int i = 0; i < cards.Count; i++)
         {
-            sortOrder = i + 2;
+            sortOrder = sortOrder + 2;
             cards[i].SetSortOrder(sortOrder);
         }
     }
