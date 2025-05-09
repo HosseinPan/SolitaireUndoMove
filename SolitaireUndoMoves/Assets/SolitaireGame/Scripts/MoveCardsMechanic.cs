@@ -60,7 +60,8 @@ public class MoveCardsMechanic : MonoBehaviour
             var cardMoveEventData = new CardMovedEventData
             {
                 card = selectedCard,
-                targetPile = target
+                targetPile = target.PileName,
+                isUndoing = false
             };
             EventBus.RaiseOnCardMoved(cardMoveEventData);
         }

@@ -19,12 +19,15 @@ public class Card : MonoBehaviour
     [HideInInspector]
     public Pile CurrentPile;
 
+    public CardData CardData => cardData;
+
 
     public void Initialize(CardData data)
     {
         cardData = data;
+        cardData.card = this;
 
-        switch(data.Suit)
+        switch (data.Suit)
         {
             case CardSuit.Spades:
                 suitText.text = "S";

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 public static class EventBus
 {
-    public static event Action OnStartGame;
     public static event Action<InitializePileEventData> OnInitializePiles;
     public static event Action<CardMovedEventData> OnCardMoved;
+    public static event Action OnUndoMove;
 
-    public static void RaiseOnStartGame()
+    public static void RaiseOnUndoMove()
     {
-        OnStartGame?.Invoke();
+        OnUndoMove?.Invoke();
     }
 
     public static void RaiseOnInitializePiles(InitializePileEventData eventData)
@@ -32,5 +32,6 @@ public class InitializePileEventData
 public class CardMovedEventData
 {
     public Card card;
-    public Pile targetPile;
+    public PileName targetPile;
+    public bool isUndoing;
 }

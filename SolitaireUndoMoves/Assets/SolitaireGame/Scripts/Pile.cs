@@ -27,7 +27,7 @@ public class Pile : MonoBehaviour
 
     private void OnCardMoved(CardMovedEventData eventData)
     {
-        if (eventData.targetPile != this)
+        if (eventData.targetPile != PileName)
             return;
 
         AddCards(new List<Card> { eventData.card });
@@ -76,7 +76,7 @@ public class Pile : MonoBehaviour
                 case PileName.TableauPile2:
                 case PileName.TableauPile3:
 
-                    addingCard.SetBack();
+                    addingCard.SetFront();
                     break;
             }
 
