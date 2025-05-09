@@ -17,41 +17,54 @@ public class Pile : MonoBehaviour
 
     public void Initialize(List<Card> addingCards)
     {
-        switch (PileName) 
+        AddCards(addingCards);
+
+        if (PileName == PileName.TableauPile1 ||
+            PileName == PileName.TableauPile2 ||
+            PileName == PileName.TableauPile3)
         {
-            case PileName.DrawPile:
-                foreach (Card card in addingCards)
-                    card.SetBack();
-                break;
-
-            case PileName.WastePile:
-                foreach (Card card in addingCards)
-                    card.SetFront();
-                break;
-
-            case PileName.FoundationPileSpades:
-            case PileName.FoundationPileDiamonds:
-            case PileName.FoundationPileHearts:
-            case PileName.FoundationPileClubs:
-                foreach (Card card in addingCards)
-                    card.SetFront();
-                break;
-
-            case PileName.TableauPile1:
-            case PileName.TableauPile2:
-            case PileName.TableauPile3:
-
-                foreach (Card card in addingCards)
-                    card.SetBack();
-                addingCards[addingCards.Count - 1].SetFront();
-
-                break;
+            addingCards[addingCards.Count - 1].SetFront();
         }
+
+        foreach (var addingCard in addingCards)
+            addingCard.transform.localPosition = Vector3.zero;
     }
 
     public void AddCards(List<Card> addingCards)
     {
         cards.AddRange(addingCards);
+
+        foreach (var addingCard in addingCards)
+        {
+            switch (PileName)
+            {
+                case PileName.DrawPile:
+                    addingCard.SetBack();
+                    break;
+
+                case PileName.WastePile:
+                    addingCard.SetFront();
+                    break;
+
+                case PileName.FoundationPileSpades:
+                case PileName.FoundationPileDiamonds:
+                case PileName.FoundationPileHearts:
+                case PileName.FoundationPileClubs:
+                    addingCard.SetFront();
+                    break;
+
+                case PileName.TableauPile1:
+                case PileName.TableauPile2:
+                case PileName.TableauPile3:
+
+                    addingCard.SetBack();
+                    break;
+            }
+
+            addingCard.transform.parent = cardsParent;
+        }
+
+        
     }
 
     public void RemoveCards(List<Card> removingCards)
