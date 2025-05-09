@@ -4,10 +4,12 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject backCard;
-    [SerializeField] private GameObject frontCard;
+    [SerializeField] private SpriteRenderer backCard;
+    [SerializeField] private SpriteRenderer frontCard;
     public TMP_Text numberText;
     public TMP_Text suitText;
+    public MeshRenderer meshRendererNumberText;
+    public MeshRenderer meshRendererSuitText;
 
     [Space]
     [Header("Data")]
@@ -56,14 +58,24 @@ public class Card : MonoBehaviour
 
     public void SetFront()
     {
-        backCard.SetActive(false);
-        frontCard.SetActive(true);
+        backCard.gameObject.SetActive(false);
+        frontCard.gameObject.SetActive(true);
     }
 
     public void SetBack()
     {
-        backCard.SetActive(true);
-        frontCard.SetActive(false);
+        backCard.gameObject.SetActive(true);
+        frontCard.gameObject.SetActive(false);
+    }
+
+    public void SetSortOrder(int order)
+    {
+        backCard.sortingOrder = order;
+        frontCard.sortingOrder = order;
+
+        meshRendererNumberText.sortingOrder = order + 1;
+        meshRendererSuitText.sortingOrder = order + 1;
+
     }
 
 }

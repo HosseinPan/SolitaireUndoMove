@@ -552,10 +552,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd9ceceb08e3a842970cf397e9d3740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backCard: {fileID: 7223306914565135719}
-  frontCard: {fileID: 480982106038755296}
+  backCard: {fileID: 8964771439614345967}
+  frontCard: {fileID: 3190740665663078029}
   numberText: {fileID: 6191474606072068309}
   suitText: {fileID: 7127662186967297875}
+  meshRendererNumberText: {fileID: 550699829647435195}
+  meshRendererSuitText: {fileID: 7788618536698091999}
   cardData:
     Id: 0
     Suit: 0

@@ -64,7 +64,7 @@ public class Pile : MonoBehaviour
             addingCard.transform.parent = cardsParent;
         }
 
-        
+        ReSortOrderCards();
     }
 
     public void RemoveCards(List<Card> removingCards)
@@ -72,6 +72,18 @@ public class Pile : MonoBehaviour
         foreach (Card removingCard in removingCards) 
         {
             cards.Remove(removingCard);
-        }       
+        }
+
+        ReSortOrderCards();
+    }
+
+    private void ReSortOrderCards()
+    {
+        int sortOrder = 0;
+        for (int i = 0; i < cards.Count; i++)
+        {
+            sortOrder = i + 2;
+            cards[i].SetSortOrder(sortOrder);
+        }
     }
 }
